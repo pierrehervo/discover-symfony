@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +23,11 @@ class ProductController extends AbstractController
      *
      * @Route("/product/{slug}", name="product_show")
      */
-    public function show($slug)
+    public function show($slug, LoggerInterface $logger)
     {
         dump($slug);
+        // Je fais un log avec le service Monolog de Symfony
+        $logger->info('Visite du produit '.$slug);
 
         return $this->render('product/show.html.twig');
     }
