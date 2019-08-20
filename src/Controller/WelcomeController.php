@@ -14,6 +14,7 @@ class WelcomeController
     {
         $name = 'Matthieu';
 
-        return new Response('Salut les gens et '.$name);
+        // $request->get('a') équivaut à $_GET['a']
+        return new Response('<body>Salut les gens et '.$name.'</body>');
     }
 }
