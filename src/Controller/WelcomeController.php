@@ -9,6 +9,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WelcomeController extends AbstractController
 {
+    // On doit pouvoir :
+    // Aller sur /hello/pierre => Hello Pierre
+    // Aller sur /hello/juliette => Hello Juliette
+    // Le prénom dans l'URL doit être dynamique et le contrôleur doit se charger d'ajouter la première lettre du prénom en majuscule et ensuite il doit passer la variable à la vue Twig.
+    // BONUS : Si on va sur /hello, on doit afficher Hello tout le monde. Le nom saisi dans l'URL devra faire entre 3 et 8 caractères et sera composé uniquement de majuscule.
+
+    /**
+     * @Route("/hello/{prenom}", requirements={"prenom"="[A-Z]{3,8}"})
+     */
+    public function bonjour($prenom = 'tout le monde')
+    {
+        $prenom = ucfirst($prenom);
+
+        return $this->render('welcome/bonjour.html.twig', [
+            'prenom' => $prenom,
+        ]);
+    }
+
     /**
      * @Route("/hello", name="hello")
      */
