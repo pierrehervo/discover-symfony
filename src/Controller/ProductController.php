@@ -64,4 +64,13 @@ class ProductController extends AbstractController
         //On s'assure de parcourir tout le tableau et seulement on affiche la 404
         throw $this->createNotFoundException();
     }
+
+    /**
+     * @Route("/product.json")
+     */
+    public function api()
+    {
+        //On renvoie le tableau des produits sous forme JSON
+        return $this->json($this->products);
+    }
 }
