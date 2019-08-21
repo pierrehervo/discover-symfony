@@ -39,13 +39,22 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product")
+     * @Route("/product/{page}", requirements={"page"="\d+"})
      */
-    public function array()
+    public function array($page = 1)
     {
        $products = $this->products;
-        dump($products);
-        return $this->render('product/array.html.twig', ['products'=>$products]);
+       $products = array_slice($products, ($page -1)*2, 2);//array_slice pour la pagination. La j'ai deux pages, qui affichent deux produits par pages
+       $maxPages = ceil(count($this->products) /2); 
+       //Si la page courante est sup au nombres max de pages, on met une 404
+       if ($page > $maxPages){
+           throw $this->createNotFoundException();
+       }
+       return $this->render('product/array.html.twig', [
+            'products'=>$products,
+            'current_page'=>$page,
+            'max_pages'=> $maxPages
+            ]);
     }
 
     /**
