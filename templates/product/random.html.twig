@@ -1,7 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{# product.name equivaut à $product['name'] #}
-    Nom du produit: {{product.name}} </br>
-    Prix : {{product.price}}
+    <!-- product.name équivaut à $product['name'] -->
+    {# Un commentaire #}
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h1>{{ product.name | upper | lower }}</h1>
+                <h3>{{ product.price }} &euro;</h3>
+            </div>
+            <div class="col-md-6">
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="{{ path('app_product_order', {'slug': product.slug}) }}" class="btn btn-info">Commander le produit</a>
+        </div>
+  </div>
 {% endblock %}

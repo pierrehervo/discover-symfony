@@ -1,28 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump() }}
-
-    <table>
-        <thead>
     <div class="container mt-5 mb-5">
       <h1 class="text-center mb-5">Nos produits</h1>
       <div>
         <table class="table">
           <thead class="thead-dark">
             <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
               <th scope="col">Description</th>
               <th scope="col">Prix</th>
               <th scope="col">Actions</th>
             </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
           </thead>
           <tbody>
             {% for key, product in products %}
@@ -30,7 +20,6 @@
                     <th scope="row">{{ key }}</th>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
-                    <td>{{ product.price }}</td>
                     <td>{{ product.price }} &euro;</td>
                     <!--
                         Le deuxième paramètre de path permet de définir les paramètres obligatoires de la route
@@ -40,8 +29,6 @@
                     <td><a href="{{ path('app_product_show', {'slug': product.slug}) }}" class="btn btn-secondary">Voir le produit</a></td>
                 </tr>
             {% endfor %}
-        </tbody>
-    </table>
           </tbody>
         </table>
 
@@ -66,7 +53,6 @@
           </ul>
         </nav>
 
-        <p>Page {{ current_page }} sur {{ max_pages }}</p>
         <p>Page {{ current_page }} sur {{ max_pages }}</p>
       </div>
     </div>
